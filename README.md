@@ -41,7 +41,7 @@ operations
 |
 |----requirements.txt  #python Dependencies
 |
-|----REABME.md  #project Documentation
+|----README.md  #project Documentation
 |
 |----.env #python variables
 
