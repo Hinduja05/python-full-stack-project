@@ -68,13 +68,27 @@ pip install -r requirements.txt
 -Go the SQL Editor in supabase dashboard
 -Run this SQL command
 ```sql
-create table students (
-    id bigserial primary key,
+create table if not exists students (
+    id serial primary key,
     name text not null,
-    hours_studied float not null,
-    attendance float not null,
-    sleep_hours float not null,
-    prediction text
+    hours_studied int not null,
+    attendance int not null,
+    sleep_hours int not null,
+    prediction text,
+    created_at timestamp default now()
+);
+create table if not exists users (
+    id serial primary key,
+    username text unique not null,
+    password text not null,
+    role text check (role in ('teacher', 'student')) not null
+);
+create table if not exists performance_logs (
+    id serial primary key,
+    student_id int references students(id) on delete cascade,
+    old_prediction text,
+    new_prediction text,
+    updated_at timestamp default now()
 );
 ```
 3.Get your credentials
