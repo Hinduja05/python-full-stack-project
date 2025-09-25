@@ -94,12 +94,11 @@ def get_logs_by_student(student_id):
 def get_all_logs():
     response = supabase.table("performance_logs").select("*").execute()
     return response.data
-
 def update_student(student_id, updated_fields: dict):
     # Automatically add updated_at timestamp
     updated_fields["updated_at"] = datetime.now()
     return supabase.table("students").update(updated_fields).eq("id", student_id).execute()
-
+    
 #  DELETE: Delete logs for a student
 def delete_logs_by_student(student_id):
     return supabase.table("performance_logs").delete().eq("student_id", student_id).execute()
