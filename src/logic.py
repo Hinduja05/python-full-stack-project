@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #src/logic.py
 from src.db import DatabaseManager
 
@@ -89,3 +90,30 @@ class UserManager:
 #----------------
 
 
+=======
+from src.db import DatabaseManager
+
+class TaskManager:
+    def __init__(self):
+        self.db = DatabaseManager()
+
+    # ---------- GET ----------
+    def get_task(self):
+        res = self.db.get_all_students()
+        return {"Success": res["status_code"] == 200, "data": res.get("data", []), "message": res.get("error")}
+
+    # ---------- ADD ----------
+    def add_task(self, name, hours_studied, attendance, sleep_hours, prediction):
+        res = self.db.create_student(name, hours_studied, attendance, sleep_hours, prediction)
+        return {"Success": res["status_code"] == 201, "data": res.get("data", []), "message": res.get("error")}
+
+    # ---------- UPDATE ----------
+    def update_student(self, student_id, updated_fields):
+        res = self.db.update_student(student_id, updated_fields)
+        return {"Success": res["status_code"] == 200, "data": res.get("data", []), "message": res.get("error")}
+
+    # ---------- DELETE ----------
+    def delete_student(self, student_id):
+        res = self.db.delete_student(student_id)
+        return {"Success": res["status_code"] == 200, "data": res.get("data", []), "message": res.get("error")}
+>>>>>>> d1d6329 (project commit)
